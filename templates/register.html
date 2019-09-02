@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title%}App - Register New User{% endblock %}
+{% block content %}
+    <center><h1>Register new user</h1></center>
+    <form method="POST" action="/new_register">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name='nombre' aria-describedby="emailHelp" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Apellido Paterno</label>
+            <input type="text" class="form-control" id="lastname" name='lastname' aria-describedby="emailHelp" placeholder="Enter last name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Apellido Materno</label>
+            <input type="text" class="form-control" id="appMaterno" name='appMaterno' placeholder="Enter Second last name">
+        </div>
+        <div>
+            <label for="exampleInputEmail1">Email</label>
+            <input type="text" class="form-control" name="mail" name='mail' id="mail" placeholder="Enter E-mail">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name='psw' placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+{% endblock %}

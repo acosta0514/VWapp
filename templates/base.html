@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <!--Link de bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    {% if session['nombre'] %}
+        <a class="navbar-brand" href="/panel">Python VW App</a>
+    {% else %}
+        <a class="navbar-brand" href="/">Python VW App</a>
+    {% endif %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+        {% if session['nombre'] %}
+        <li class="nav-item active">
+            <a class="nav-link" href="/panel">Home </a>
+        </li>
+        {%else%}
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home </a>
+        </li>
+        {% endif %}
+        {% if session['nombre'] %}
+        <li class="nav-item active">
+            <a class="nav-link" href="/logout">Logout </a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+        </li>
+    </div>
+    </nav>
+    
+    {% with messages = get_flashed_messages() %}
+        {%if messages %}
+        <div class="container p-2 alert alert-primary" role="alert">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="container p-8">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block scripts %}
+    
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+<script>
+   function prueba(){
+     $.ajax({
+      url: "/new_register",
+      type:'POST',
+      success(res){
+        var wishObj = JSON.parse(res);
+        console.log(wishObj);
+      }
+     })
+   }
+</script>
+{% endblock %}
+
+
+ 
+
+
+{% block title %}App - Menu{% endblock %}
+{% block content %}
+
+{% if session['nombre'] %}
+    <h1>Welcome {{session['nombre']}}!</h1>
+{% endif %}
+  <table class=table>
+    <thead >
+      <tr>
+        <th></th>
+        <th><center><h1>Main Menu</h1></center></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><center><button type="button" class="btn btn-outline-primary" onclick="prueba()">Mis cuentas</button></center></td>
+        <td><center><button type="button" class="btn btn-outline-primary">Estado de cuenta</center></button></td>
+        <td><button type="button" class="btn btn-outline-primary">Transferencias</button></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><center><button type="button" class="btn btn-outline-primary">Historial de transferencias</center></button></td></center>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
